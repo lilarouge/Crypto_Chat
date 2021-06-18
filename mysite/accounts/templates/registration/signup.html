@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% include 'navbar.html'%}
+
+{% block content %}
+<h1 style="text-align: center; margin: 3%; margin-bottom: 8%;">Signup to start chating</h1>
+
+<form method="POST">
+    {% csrf_token %}
+        {{ signupform }}
+   
+
+    <button  type="submit">Sign up</button>
+    </form>
+{% endblock %}
