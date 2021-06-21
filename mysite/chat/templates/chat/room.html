@@ -10,6 +10,7 @@
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
+        const shift= Math.floor(Math.random()*26) + 1  
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
@@ -22,7 +23,27 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            const message_encrypt=data.message;
+            let new_message="";
+            let encodedIdx;
+            const alphabet= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        
+            for (var i=0; i<message_encrypt.length; i++){
+                const char= message_encrypt[i];
+                const index = alphabet.indexOf(char);
+                
+                if ((index-shift)<0){
+                     encodedIdx = 26 + index - shift;
+                    console.log(shift);
+                }
+                else {
+                     encodedIdx = (index - shift) % 26;
+                }
+                
+                new_message += alphabet[encodedIdx];
+            }
+
+            document.querySelector('#chat-log').value += (new_message + '\n');
         };
 
         chatSocket.onclose = function(e) {
@@ -38,7 +59,21 @@
 
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
+            let message_crypt = messageInputDom.value;
+            console.log(message_crypt.length);
+            let message="";
+            const alphabet= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+            let new_index;
+            for (var i=0; i<message_crypt.length; i++){
+                let letter= message_crypt[i];
+                let index_letter=alphabet.indexOf(letter.toUpperCase());
+
+                new_index= (index_letter + shift) % 26;
+            
+                message= message + alphabet[new_index];
+            };
+        
+
             chatSocket.send(JSON.stringify({
                 'message': message
             }));

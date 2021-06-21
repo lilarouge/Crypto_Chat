@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'customer',
     'restaurant',
-
+    'gym',
    
     'allauth',
     'allauth.account',

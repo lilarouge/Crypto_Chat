@@ -21,8 +21,10 @@ from customer.views import Index, About, Order, OrderConfirmation, OrderPayConfi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),    path('chat/', include('chat.urls')),
+    path('accounts/', include('allauth.urls')),    
+    path('chat/', include('chat.urls')),
     path('restaurant/', include('restaurant.urls')),
+    path('gym/', include('gym.urls')),
     path('', Index.as_view(), name='index'),
     path('about/', About.as_view(), name="about"),
     path('menu/', Menu.as_view(), name='menu'),
