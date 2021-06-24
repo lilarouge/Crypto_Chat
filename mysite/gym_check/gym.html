@@ -1,1 +1,58 @@
-<h1>MORE SPORT !</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera</title>
+</head>
+<body>
+    <video id='video' autoplay></video>
+
+    <script>
+        // Video stream
+     const constraints = {
+        video: true,
+        audio:false
+      };
+      
+      const video = document.querySelector("video");
+      
+      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        video.srcObject = stream;
+      });
+
+      //RTC data Channel
+      const dataChannelOptions = {
+  ordered: false, // do not guarantee order
+  maxPacketLifeTime: 3000, // in milliseconds
+};
+
+    const peerConnection = new RTCPeerConnection();
+
+// Establish your peer connection using your signaling channel here
+const dataChannel =
+  peerConnection.createDataChannel("myLabel", dataChannelOptions);
+
+dataChannel.onerror = (error) => {
+  console.log("Data Channel Error:", error);
+};
+
+dataChannel.onmessage = (event) => {
+  console.log("Got Data Channel Message:", event.data);
+};
+
+dataChannel.onopen = () => {
+  dataChannel.send("Hello World!");
+};
+
+dataChannel.onclose = () => {
+  console.log("The Data Channel is Closed");
+};
+
+    </script>
+  
+
+
+</body>
+</html>
