@@ -95,7 +95,7 @@ class Order(View):
             'price': price
         }
 
-        return redirect('order-confirmation', pk=order.pk)
+        return redirect(f'http://localhost:8080/view/{order.pk}')
         #(f'http://localhost:8080/{order.pk}')
 
 
