@@ -96,6 +96,7 @@ class Order(View):
         }
 
         return redirect('order-confirmation', pk=order.pk)
+        #(f'http://localhost:8080/{order.pk}')
 
 
 class OrderConfirmation(View):
@@ -152,3 +153,4 @@ class MenuSearch(View):
         }
 
         return render(request, 'customer/menu.html', context)
+

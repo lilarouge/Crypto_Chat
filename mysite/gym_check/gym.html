@@ -22,34 +22,6 @@
         video.srcObject = stream;
       });
 
-      //RTC data Channel
-      const dataChannelOptions = {
-  ordered: false, // do not guarantee order
-  maxPacketLifeTime: 3000, // in milliseconds
-};
-
-    const peerConnection = new RTCPeerConnection();
-
-// Establish your peer connection using your signaling channel here
-const dataChannel =
-  peerConnection.createDataChannel("myLabel", dataChannelOptions);
-
-dataChannel.onerror = (error) => {
-  console.log("Data Channel Error:", error);
-};
-
-dataChannel.onmessage = (event) => {
-  console.log("Got Data Channel Message:", event.data);
-};
-
-dataChannel.onopen = () => {
-  dataChannel.send("Hello World!");
-};
-
-dataChannel.onclose = () => {
-  console.log("The Data Channel is Closed");
-};
-
     </script>
   
 

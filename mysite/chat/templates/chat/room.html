@@ -10,7 +10,7 @@
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
-        const shift= Math.floor(Math.random()*26) + 1  
+        const shift= 4;
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
@@ -33,14 +33,14 @@
                 const index = alphabet.indexOf(char);
                 
                 if ((index-shift)<0){
-                     encodedIdx = 26 + index - shift;
-                    console.log(shift);
+                    encodedIdx = 26 + index - shift;
                 }
                 else {
                      encodedIdx = (index - shift) % 26;
                 }
-                
-                new_message += alphabet[encodedIdx];
+                console.log(shift)
+
+                new_message += alphabet[encodedIdx].toLowerCase();
             }
 
             document.querySelector('#chat-log').value += (new_message + '\n');
@@ -60,7 +60,8 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             let message_crypt = messageInputDom.value;
-            console.log(message_crypt.length);
+            //console.log(message_crypt.length);
+            console.log(shift)
             let message="";
             const alphabet= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
             let new_index;

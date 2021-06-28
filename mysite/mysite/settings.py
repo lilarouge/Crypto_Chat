@@ -71,7 +71,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates'),  os.path.join(BASE_DIR, 'gym')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,3 +167,4 @@ LOGIN_REDIRECT_URL = "dashboard"
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
