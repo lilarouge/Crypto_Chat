@@ -159,8 +159,15 @@ CHANNEL_LAYERS = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
 
-
+STATICFILES_DIRS = (
+                os.path.join(BASE_DIR,'staticfiles'), # if your static files folder is named "staticfiles"
+)
+TEMPLATE_DIRS = (
+                os.path.join(BASE_DIR,'template'), # if your static files folder is named "template"
+)
 
 ACCOUNT_ADAPTER = 'restaurant.account_adapter.NoNewUsersAccountAdapter'
 LOGIN_REDIRECT_URL = "dashboard"

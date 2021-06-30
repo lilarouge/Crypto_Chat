@@ -9,9 +9,6 @@ urlpatterns = [
     path('', views.shalom, name="shalom"),
     path('monitor/', lambda r: StreamingHttpResponse(gen(VideoCamera()),
         content_type='multipart/x-mixed-replace; boundary=frame')),
-    path('robot/', views.robot, name="robot"),
-    path('order-confirmation/<int:pk>', OrderConfirmation.as_view(), name='order-confirmation'),
-
 
     
 ]

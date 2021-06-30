@@ -5,9 +5,9 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
+    <textarea id="chat-log" cols="100" rows="20" style="margin-left: 6%;"></textarea><br>
+    <input id="chat-message-input" type="text" size="100" style="padding:1%; margin-top: 1%;"><br>
+    <input id="chat-message-submit" type="button" value="Send" style="margin-top: 4%; margin-left: 37%; padding: 0.8%;">
     {{ room_name|json_script:"room-name" }}
     <script>
         const shift= 4;

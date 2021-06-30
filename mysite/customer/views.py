@@ -96,7 +96,7 @@ class Order(View):
         }
 
         return redirect(f'http://localhost:8080/view/{order.pk}')
-        #(f'http://localhost:8080/{order.pk}')
+       
 
 
 class OrderConfirmation(View):
